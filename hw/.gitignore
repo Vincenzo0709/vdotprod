@@ -1,0 +1,7 @@
+build/
+vdotprod/
+Vitis_workspace/
+
+.Xil
+xcd.log
+*.zip
