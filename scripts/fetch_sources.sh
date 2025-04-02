@@ -52,15 +52,14 @@ GitFlatten()
     # printf "\n${YELLOW}[FETCH_SOURCES] Download Bender${NC}\n"
     # curl --proto '=https' --tlsv1.2 https://pulp-platform.github.io/bender/init -sSf | sh
 
-    # Copying all RTL files into rtl dir
-    printf "\n${YELLOW}[FETCH_SOURCES] Copying all sources into rtl${NC}\n"
     cd ${CLONE_DIR}/hw
-
     # Synthesizing and copying verilog rtl files
+    printf "\n${YELLOW}[FETCH_SOURCES] Starting synthesis${NC}\n"
     make syn
     cp -r ${COMP_NAME}/hls/syn/verilog/* ${BUILD}/rtl
 
     # Packaging and copying Vivado ip files and ip .zip
+    printf "\n${YELLOW}[FETCH_SOURCES] Starting packaging${NC}\n"
     make package
     cp ${COMP_NAME}_hls.zip ${BUILD}/
     cp -r ${COMP_NAME}/hls/impl/ip/* ${BUILD}/ip
