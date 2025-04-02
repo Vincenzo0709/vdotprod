@@ -2,7 +2,7 @@
 # Author: Vincenzo Merola <vincenzo.merola2@unina.it>
 
 # Description:
-# This script downloads Vitis HLS vdotprod sources and flattens them into an rtl/ directory.
+# This script downloads Vitis HLS vdotprod sources and flattens them into a build/ directory.
 
 # To execute: ./fetch_sources.sh
 # To execute you need:
