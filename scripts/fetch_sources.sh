@@ -23,15 +23,17 @@ COMP_NAME=${CLONE_DIR}
 # Display help
 Help()
 {
-   echo
-   echo "This script downloads from Git or directly builds Vitis HLS vdotprod accelerator sources"
-   echo "and flattens rtl files, Vivado ip directory and ip .zip into a build/ directory."
-   echo
-   echo "Syntax: fetch_source.sh [--option]"
-   echo
-   echo "options:"
-   echo "-h | --help            Prints help"
-   echo
+
+cat << EOF
+This script downloads from Git or directly builds Vitis HLS vdotprod accelerator sources
+and flattens rtl files, Vivado ip directory and ip .zip into a build/ directory.
+
+Syntax: fetch_source.sh [--option]
+
+options:"
+    -h | --help            Prints help"
+EOF
+
 }
 
 GitFlatten()

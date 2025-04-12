@@ -21,34 +21,30 @@ static void store_output(   uint32_t *out,
     
 }
 
-static void execute(hls::stream<uint32_t> &inStream_A,
-                    hls::stream<uint32_t> &inStream_B,
-                    hls::stream<uint32_t> &outStream) {
+static uint32_t execute(uint32_t *A, uint32_t *B) {
 
     uint32_t outsum = 0;
     for (int i=0; i<DATA_SIZE; i++) {
 
         #pragma HLS LOOP_TRIPCOUNT min = DATA_SIZE max = DATA_SIZE
-        outsum += inStream_A.read() * inStream_B.read();
+        outsum += A[i] * B[i];
     
     }
 
-    outStream << outsum;
+    return outsum;
 
 }
 
-void krnl_vdotprod(uint32_t *axi_mm) {
-    
-    #pragma HLS INTERFACE m_axi port = axi_mm depth = DATA_SIZE bundle = gmem0
-    
-    static hls::stream<uint32_t> inStream_A("input_stream1");
-    static hls::stream<uint32_t> inStream_B("input_stream2");
-    static hls::stream<uint32_t> outStream("output_stream");
+int krnl_vdotprod() {
 
-    //#pragma HLS DATAFLOW
-    load_input(axi_mm, inStream_A, A_OFFSET);
-    load_input(axi_mm, inStream_B, B_OFFSET);
-    execute(inStream_A, inStream_B, outStream);
-    store_output(axi_mm, outStream, out_OFFSET);
+    uint32_t A[DATA_SIZE];
+    uint32_t B[DATA_SIZE];
+
+    for (int i=0; i<DATA_SIZE; i++) {
+        A[i] = DATA;
+        B[i] = DATA;
+    }
+    
+    return execute(A, B); 
 
 }

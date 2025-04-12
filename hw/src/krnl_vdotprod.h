@@ -5,13 +5,9 @@
 #include <hls_stream.h>
 
 #define DATA_SIZE 32
+#define DATA 1
 #define EXPCTD DATA_SIZE
 
-#define A_OFFSET 0
-#define B_OFFSET DATA_SIZE
-#define out_OFFSET 2*DATA_SIZE
-#define SIZE_MM 2*DATA_SIZE + 1
-
-void krnl_vdotprod(uint32_t *);
+int krnl_vdotprod();
 
 #endif
